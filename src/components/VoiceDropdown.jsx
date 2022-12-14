@@ -19,9 +19,15 @@ const VoiceDropdown = () => {
     })
 
     voices.then((voices) => {
+      // Sort voices by language
+      voices.sort((a, b) => a.lang.localeCompare(b.lang));
+
+      // Limit number of voices shown to 250
+      voices = voices.slice(0, 250);
+
       setVoices(voices);
     })
-  }, []);
+    }, []);
 
   // send voice with target name to background script
   const handleChange = (event) => {
